@@ -11,34 +11,29 @@ CXXFLAGS =  -D _DEBUG -ggdb3 -std=c++17 -O0 -Wall -Wextra -Weffc++ -Waggressive-
 		 	-fcheck-new -fsized-deallocation -fstack-protector -fstrict-overflow -flto-odr-type-merging \
 		  	-fno-omit-frame-pointer -Wlarger-than=8192 -Wstack-usage=8192 -pie -fPIE -Werror=vla \
 			-fsanitize=address,alignment,bool,bounds,enum,float-cast-overflow,float-divide-by-zero,integer-divide-by-zero,leak,nonnull-attribute,null,object-size,return,returns-nonnull-attribute,shift,signed-integer-overflow,undefined,unreachable,vla-bound,vptr
-TARGET = main
+
 SourcePrefix = src/
 BuildPrefix = build/
 BuildFolder = build
 IncludePrefix = include
 
 Sources = Color_output.cpp
-Main = main.cpp
+#Main = main.cpp
 
 .PHONY : all clean folder
 
-all : folder $(TARGET)
-
 Source = $(addprefix $(SourcePrefix), $(Sources))
-MainObject = $(patsubst %.cpp, $(BuildPrefix)%.o, $(Main))
+#MainObject = $(patsubst %.cpp, $(BuildPrefix)%.o, $(Main))
 objects = $(patsubst $(SourcePrefix)%.cpp, $(BuildPrefix)%.o, $(Source))
+
+all : folder $(objects)
 
 $(BuildPrefix)%.o : $(SourcePrefix)%.cpp
 	@echo [CXX] -c $< -o $@
 	@$(CXX) $(CXXFLAGS) -I$(IncludePrefix) -c $< -o $@
 
-
-$(TARGET) : $(objects) $(MainObject)
-	@echo [CC] $^ -o $@
-	@$(CXX) $(CXXFLAGS) -I$(IncludePrefix) $^ -o $@
-
 clean :
-	rm $(TARGET) $(BuildFolder)/*.o
+	rm $(BuildFolder)/*.o
 
 folder :
 	mkdir -p $(BuildFolder)
