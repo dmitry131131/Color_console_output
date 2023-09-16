@@ -15,6 +15,7 @@ CXXFLAGS =  -D _DEBUG -ggdb3 -std=c++17 -O0 -Wall -Wextra -Weffc++ -Waggressive-
 SourcePrefix = src/
 BuildPrefix = build/
 BuildFolder = build
+DoxygenFolder = doxygen
 IncludePrefix = include
 
 Sources = Color_output.cpp
@@ -33,7 +34,8 @@ $(BuildPrefix)%.o : $(SourcePrefix)%.cpp
 	@$(CXX) $(CXXFLAGS) -I$(IncludePrefix) -c $< -o $@
 
 clean :
-	rm $(BuildFolder)/*.o
+	rm -fr $(BuildFolder)
+	rm -fr $(DoxygenFolder)
 
 folder :
 	mkdir -p $(BuildFolder)
