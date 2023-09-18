@@ -35,3 +35,10 @@ void color_putc(FILE* stream, enum consoleColor color, enum consoleStyle style, 
     putc(ch, stream);
     fprintf(stream, "\33[0;39m");
 }
+
+void color_fputs(FILE* stream, enum consoleColor color, enum consoleStyle style, const char* text)
+{
+    fprintf(stream, "\33[%d;3%dm", style, color);
+    fputs(text, stream);
+    fprintf(stream, "\33[0;39m");
+}

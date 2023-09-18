@@ -66,4 +66,13 @@ void set_color(FILE* stream, enum consoleColor color, enum consoleStyle style);
 */
 void color_putc(FILE* stream, enum consoleColor color, enum consoleStyle style, char ch);
 
+/**
+ * @brief fputs function with color and style settings
+ * @param [out] stream Output flow
+ * @param [in]  color  Text color
+ * @param [in]  style  Text style
+ * @param [in]  text   Text value
+*/
+void color_fputs(FILE* stream, enum consoleColor color, enum consoleStyle style, const char* text);
+
 #endif
