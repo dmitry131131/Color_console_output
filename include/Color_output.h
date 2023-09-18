@@ -41,19 +41,29 @@ void color_printf(enum consoleColor color, enum consoleStyle style, const char* 
 
 /**
  * @brief fprintf function with color and style settings
+ * @param [out] stream Output flow
  * @param [in]  color  Text color
  * @param [in]  style  Text style
- * @param [out] stream Output flow
  * @param [in]  text   Text value
 */
-void color_fprintf(enum consoleColor color, enum consoleStyle style, FILE* stream, const char* text, ...);
+void color_fprintf(FILE* stream, enum consoleColor color, enum consoleStyle style, const char* text, ...);
 
 /**
  * @brief Function sets color and style for console
- * @param [in] color Text color
- * @param [in] style Text style
+ * @param [in] stream Output stream 
+ * @param [in] color  Text color
+ * @param [in] style  Text style
  * @warning After printing all your data remember to set consoles default color and style
 */
-void set_color(enum consoleColor color, enum consoleStyle style);
+void set_color(FILE* stream, enum consoleColor color, enum consoleStyle style);
+
+/**
+ * @brief putc function with color and style settings
+ * @param [out] stream Output flow
+ * @param [in]  color  Text color
+ * @param [in]  style  Text style
+ * @param [in]  ch     Char
+*/
+void color_putc(FILE* stream, enum consoleColor color, enum consoleStyle style, char ch);
 
 #endif
