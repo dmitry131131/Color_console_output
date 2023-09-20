@@ -19,12 +19,10 @@ DoxygenFolder = doxygen
 IncludePrefix = include
 
 Sources = Color_output.cpp
-#Main = main.cpp
 
 .PHONY : all clean folder
 
 Source = $(addprefix $(SourcePrefix), $(Sources))
-#MainObject = $(patsubst %.cpp, $(BuildPrefix)%.o, $(Main))
 objects = $(patsubst $(SourcePrefix)%.cpp, $(BuildPrefix)%.o, $(Source))
 
 all : folder $(objects)

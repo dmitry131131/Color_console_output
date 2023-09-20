@@ -8,10 +8,9 @@ void color_printf(enum consoleColor color, enum consoleStyle style, const char* 
 {
     va_list arguments;
     va_start(arguments, text);
-
-    printf("\33[%d;3%dm", style, color);
+    set_color(stdout, color, style);
     vprintf(text, arguments);
-    printf("\33[0;39m");
+    set_color(stdout, COLOR_DEFAULT, STYLE_NORMAL);
 }
 
 void color_fprintf(FILE* stream, enum consoleColor color, enum consoleStyle style, const char* text, ...)
@@ -19,9 +18,9 @@ void color_fprintf(FILE* stream, enum consoleColor color, enum consoleStyle styl
     va_list arguments;
     va_start(arguments, text);
 
-    fprintf(stream, "\33[%d;3%dm", style, color);
+    set_color(stream, color, style);
     vfprintf(stream, text, arguments);
-    fprintf(stream, "\33[0;39m");
+    set_color(stream, COLOR_DEFAULT, STYLE_NORMAL);
 }
 
 void set_color(FILE* stream, enum consoleColor color, enum consoleStyle style)
@@ -31,14 +30,14 @@ void set_color(FILE* stream, enum consoleColor color, enum consoleStyle style)
 
 void color_putc(FILE* stream, enum consoleColor color, enum consoleStyle style, char ch)
 {
-    fprintf(stream, "\33[%d;3%dm", style, color);
+    set_color(stream, color, style);
     putc(ch, stream);
-    fprintf(stream, "\33[0;39m");
+    set_color(stream, COLOR_DEFAULT, STYLE_NORMAL);
 }
 
 void color_fputs(FILE* stream, enum consoleColor color, enum consoleStyle style, const char* text)
 {
-    fprintf(stream, "\33[%d;3%dm", style, color);
+    set_color(stream, color, style);
     fputs(text, stream);
-    fprintf(stream, "\33[0;39m");
+    set_color(stream, COLOR_DEFAULT, STYLE_NORMAL);
 }
