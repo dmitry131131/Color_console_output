@@ -37,7 +37,7 @@ release: $(objects)
 
 $(BuildPrefix)%.o : $(SourcePrefix)%.cpp
 	@echo [CXX] -c $< -o $@
-	$(CXX) $(CXXFLAGS) -I$(IncludePrefix) -c $< -o $@
+	@$(CXX) $(CXXFLAGS) -I$(IncludePrefix) -c $< -o $@
 
 clean :
 	rm -fr $(BuildFolder)
